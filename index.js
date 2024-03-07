@@ -5,9 +5,12 @@ const { setCustomClaim } = require("./customClaims");
 const { createUser } = require("./createUser");
 const { deleteUser } = require("./deleteUser");
 
+
 // Initialize Firebase Admin SDK with your credentials
+const serviceAccount
+
 try {
-    const serviceAccount = require("./firebaseCredentials.json");
+    serviceAccount = require("./firebaseCredentials.json");
     // Proceed with using serviceAccount
 } catch (error) {
     console.error("Error loading firebaseCredentials.json:", error.message);
