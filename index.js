@@ -26,7 +26,7 @@ admin.initializeApp({
 const schema = {
   properties: {
     action: {
-      description: "Type an option: [ Set custom claim | Create new user | Delete user ],
+      description: "Type an option: [ Set custom claim | Create new user | Delete user ]",
       required: true,
       enum: ["Set custom claim", "Create new user", "Delete user"],
     },
