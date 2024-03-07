@@ -26,7 +26,7 @@ admin.initializeApp({
 const schema = {
   properties: {
     action: {
-      description: "Select an option:",
+      description: "Select an option: ('Set custom claim', 'Create new user', 'Delete user')",
       required: true,
       enum: ["Set custom claim", "Create new user", "Delete user"],
     },
@@ -37,9 +37,13 @@ prompt.start();
 
 prompt.get(schema, async (err, result) => {
   if (err) {
-    console.error("Prompt error:", err);
-    return;
-  }
+        if (err.toString().includes('canceled')) {
+            console.log('Canceled by user');
+        } else {
+            console.error("Prompt error:", err);
+        }
+        return;
+    }
 
   const { action } = result;
 
