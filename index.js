@@ -7,7 +7,7 @@ const { deleteUser } = require("./deleteUser");
 
 
 // Initialize Firebase Admin SDK with your credentials
-const serviceAccount
+let serviceAccount
 
 try {
     serviceAccount = require("./firebaseCredentials.json");
@@ -16,7 +16,7 @@ try {
     console.error("Error loading firebaseCredentials.json:", error.message);
     console.log("Make sure to place your Firebase private service key inside of the lncDev/firebaseAdminCLI/ folder")
     console.log("The .JSON file should be renamed to firebaseCredentials.JSON")
-    return
+    process.exit(1);
     // Handle the error as needed, such as exiting the script or using default credentials
 }
 admin.initializeApp({
