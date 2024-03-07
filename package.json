@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "setCustomClaim": "node index.js"
+    "installFirebase": "npm install && chmod +x firebaseAdminCLI.sh && ./createSymlink && echo \"firebaseAdminCLI was installed\""
   },
   "author": "",
   "license": "ISC",
