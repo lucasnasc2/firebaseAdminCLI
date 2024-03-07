@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "firebaseAdmin": "node index.js",
-    "install": "npm install && chmod +x firebaseAdminCLI.sh && chmod +x createSymlink.sh && ./createSymlink.sh && echo \"firebaseAdminCLI was installed succesfully.\" && echo \"Call firebaseAdmin to start the CLI\" && echo \"Make sure to create a firebaseCredential.json file with you private service key, on the firebaseAdminCLI folder\""
+    "install": "npm install && chmod +x firebaseAdminCLI.sh && chmod +x createSymlink.sh && ./createSymlink.sh && echo \"firebaseAdminCLI was installed succesfully.\" && echo \"Call firebaseAdmin to start the CLI\" && echo \"Make sure to create a firebaseCredential.json file with you private service key, on the firebaseAdminCLI folder\" && exit 1"
   },
   "author": "",
   "license": "ISC",
