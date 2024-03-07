@@ -1,2 +1,3 @@
 #!/bin/bash
-node firebaseAdminIndex
+user_home=~
+node "$user_home/lncDev/firebaseAdminCLI/index.js"
