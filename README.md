@@ -1,7 +1,7 @@
 # Firebase Admin CLI
 ## Simple tool to manage users and custom claims on you Firebase project
 
-###install:
+### install:
 
 - Open a terminal on the root folder (very important).
 - Paste the line below and press enter.
