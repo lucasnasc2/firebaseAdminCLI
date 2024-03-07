@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "setCustomClaim": "node index.js"
-    "installFirebase": "npm install && chmod +x firebaseAdminCLI.sh && ./createSymlink && echo \"firebaseAdminCLI was installed\""
+    "setCustomClaim": "node index.js",
+    "install": "npm install && chmod +x firebaseAdminCLI.sh && chmod +x createSymlink.sh && ./createSymlink.sh && echo \"firebaseAdminCLI was installed succesfully.\" && echo \"Call firebaseAdmin to start the CLI\""
   },
   "author": "",
   "license": "ISC",

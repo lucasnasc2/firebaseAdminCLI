@@ -1,44 +1,48 @@
-const admin = require("firebase-admin");
+// index.js
 const prompt = require("prompt");
-const serviceAccount = require("./firebaseCredentials.json");
+const admin = require("firebase-admin");
+const { setCustomClaim } = require("./customClaims");
+const { createUser } = require("./createUser");
+const { deleteUser } = require("./deleteUser");
 
 // Initialize Firebase Admin SDK with your credentials
+const serviceAccount = require("./firebaseCredentials.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
 const schema = {
   properties: {
-    email: {
-      description: "Enter user email:",
+    action: {
+      description: "Select an option:",
       required: true,
-      pattern: /^\S+@\S+\.\S+$/, // Basic email pattern validation
-      message: "Please enter a valid email address",
+      enum: ["Set custom claim", "Create new user", "Delete user"],
     },
   },
 };
 
 prompt.start();
 
-prompt.get(schema, (err, result) => {
+prompt.get(schema, async (err, result) => {
   if (err) {
     console.error("Prompt error:", err);
     return;
   }
 
-  const userEmail = result.email;
-  admin
-    .auth()
-    .getUserByEmail(userEmail)
-    .then((userRecord) => {
-      return admin.auth().setCustomUserClaims(userRecord.uid, {
-        admin: true,
-      });
-    })
-    .then(() => {
-      console.log(`Custom claim 'admin' set for user with email: ${userEmail}`);
-    })
-    .catch((error) => {
-      console.error("Error setting custom claim:", error);
-    });
+  const { action } = result;
+
+  switch (action) {
+    case "Set custom claim":
+      await setCustomClaim(admin);
+      break;
+    case "Create new user":
+      await createUser(admin); // Pass admin object to createUser function
+      break;
+    case "Delete user":
+      await deleteUser(admin); // Pass admin object to deleteUser function
+      break;
+    // Add cases for other actions (create new user, delete user) here
+    default:
+      console.error("Invalid action selected");
+  }
 });
