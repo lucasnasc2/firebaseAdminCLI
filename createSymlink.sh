@@ -10,6 +10,8 @@ cat <<EOT >> firebaseAdminCLI.sh
 node "$firebaseAdminCLI_path/index.js"
 EOT
 
+chmod +x firebaseAdminCLI.sh
+
 # Create the symbolic link
 sudo ln -s "$firebaseAdminCLI_path/firebaseAdminCLI.sh" /usr/local/bin/firebaseAdmin
 
