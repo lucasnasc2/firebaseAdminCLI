@@ -3,10 +3,9 @@
 
 ### install:
 
-- Open a terminal on the root folder (very important).
-- Paste the line below and press enter.
+- Paste tis script on your terminal.
 ```
-mkdir lncDev && cd lncDev && git clone https://github.com/lucasnasc2/firebaseAdminCLI.git && cd firebaseAdminCLI && npm run installFirebaseAdmin
+git clone https://github.com/lucasnasc2/firebaseAdminCLI.git && cd firebaseAdminCLI && npm run installFirebaseAdmin
 ```
 - Paste your project's private key `.json` file into this folder and rename it to `firebaseCredentials.json`
 Done!
