@@ -1,6 +1,7 @@
-async function updateSalesWithProductNames(admin) {
+async function updateSales(admin) {
   const firestore = admin.firestore();
-  const transaction = await firestore.runTransaction(async (t) => {
+  try {
+    const transaction = await firestore.runTransaction(async (t) => {
     // Fetch all sales documents
     const salesSnapshot = await t.get(firestore.collection('sales'));
 
@@ -38,13 +39,11 @@ async function updateSalesWithProductNames(admin) {
   });
 
   console.log('Sales updated successfully with product names.');
+  } catch(error) {
+    console.error('Error updating sales with product names:', error);
+  }
 }
 
-// Call the function to update sales with product names using atomic transactions
-updateSalesWithProductNames().catch((error) => {
-  console.error('Error updating sales with product names:', error);
-});
-
 module.exports = {
-  updateSalesWithProductNames,
+  updateSales,
 };
