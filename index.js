@@ -4,6 +4,7 @@ const admin = require("firebase-admin");
 const { setCustomClaim } = require("./customClaims");
 const { createUser } = require("./createUser");
 const { deleteUser } = require("./deleteUser");
+const { updateSales } = require("./updateSales");
 
 
 // Initialize Firebase Admin SDK with your credentials
@@ -28,7 +29,7 @@ const schema = {
     action: {
       description: "Type an option: [ Set custom claim | Create new user | Delete user ]",
       required: true,
-      enum: ["Set custom claim", "Create new user", "Delete user"],
+      enum: ["Set custom claim", "Create new user", "Delete user", "updateSales"],
     },
   },
 };
@@ -56,6 +57,9 @@ prompt.get(schema, async (err, result) => {
       break;
     case "Delete user":
       await deleteUser(admin); // Pass admin object to deleteUser function
+      break;
+    case "updateSales:
+      await updateSales(admin)
       break;
     // Add cases for other actions (create new user, delete user) here
     default:
