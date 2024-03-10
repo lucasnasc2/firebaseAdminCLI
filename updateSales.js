@@ -15,9 +15,9 @@ async function updateSales(admin) {
         // Fetch product document based on item ID
         const productDoc = await firestore.collection('products').doc(item.id).get();
         if (productDoc.exists) {
-          const productName = productDoc.data().name;
+          const productName = productDoc.data().description;
           // Add product name to the item object
-          item.name = productName;
+          item.description = productName;
         } else {
           console.error(`Product with ID ${item.id} does not exist.`);
         }
