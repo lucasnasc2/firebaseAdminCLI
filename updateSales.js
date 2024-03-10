@@ -1,14 +1,5 @@
-const admin = require('firebase-admin');
-
-// Initialize Firebase Admin SDK with service account credentials
-const serviceAccount = require('./firebaseCredentials.json');
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-
-const firestore = admin.firestore();
-
-async function updateSalesWithProductNames() {
+async function updateSalesWithProductNames(admin) {
+  const firestore = admin.firestore();
   const transaction = await firestore.runTransaction(async (t) => {
     // Fetch all sales documents
     const salesSnapshot = await t.get(firestore.collection('sales'));
