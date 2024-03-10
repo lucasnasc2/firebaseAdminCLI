@@ -44,3 +44,7 @@ async function updateSalesWithProductNames(admin) {
 updateSalesWithProductNames().catch((error) => {
   console.error('Error updating sales with product names:', error);
 });
+
+module.exports = {
+  updateSalesWithProductNames,
+};
