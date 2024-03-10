@@ -58,7 +58,7 @@ prompt.get(schema, async (err, result) => {
     case "Delete user":
       await deleteUser(admin); // Pass admin object to deleteUser function
       break;
-    case "updateSales:
+    case "updateSales":
       await updateSales(admin);
       break;
     // Add cases for other actions (create new user, delete user) here
