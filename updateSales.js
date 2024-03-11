@@ -1,35 +1,29 @@
 async function updateSales(admin) {
+  const userEmail = 'lucas.nasc2.ln@gmail.com'; // Hardcoded email
+
   const firestore = admin.firestore();
   try {
-    // Fetch all sales documents
-    const salesSnapshot = await firestore.collection('sales').get();
+    // Fetch all products documents
+    const productsSnapshot = await firestore.collection('products').get();
 
-    // Iterate over each sale document
-    salesSnapshot.forEach(async (saleDoc) => {
-      const saleData = saleDoc.data();
-
-      // Iterate over each item in the sale's items array
-      for (let i = 0; i < saleData.items.length; i++) {
-        const item = saleData.items[i];
-
-        // Fetch product document based on item ID
-        const productDoc = await firestore.collection('products').doc(item.id).get();
-        if (productDoc.exists) {
-          const productName = productDoc.data().description;
-          // Add product name to the item object
-          item.description = productName;
-        } else {
-          console.error(`Product with ID ${item.id} does not exist.`);
-        }
-      }
-
-      // Update the sale document with updated item objects
-      await saleDoc.ref.update({ items: saleData.items });
+    // Iterate over each product document
+    productsSnapshot.forEach(async (productDoc) => {
+      const productData = productDoc.data();
+      
+      // Add or update keys in the product object
+      const timestamp = admin.firestore.FieldValue.serverTimestamp();
+      
+      productData.createdTimestamp = timestamp;
+      productData.modifiedTimestamp = timestamp;
+      productData.modifiedBy = userEmail; // Hardcoded email
+      
+      // Update the product document with new keys
+      await productDoc.ref.set(productData, { merge: true });
     });
 
-    console.log('Sales updated successfully with product names.');
+    console.log('Products updated successfully with new keys.');
   } catch (error) {
-    console.error('Error updating sales with product names:', error);
+    console.error('Error updating products with new keys:', error);
   }
 }
 
